@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
         User oCurrentUser = userRepository.findByEmail(email.trim()).orElse(null);
 
         oCurrentUser.setPassword(password);
-        //TODO send mail
+
         userRepository.save(oCurrentUser);
     }
 
