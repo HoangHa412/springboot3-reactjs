@@ -1,0 +1,14 @@
+.chat-window .ant-drawer-header {
+    background-color: #4267B2;
+    color: white;
+}
+
+.chat-window .ant-drawer-title {
+    display: flex;
+    align-items: center;
+}
+
+.chat-window .ant-avatar {
+    margin-right: 10px;
+    background-color: #f56a00;
+}
