@@ -1,10 +1,10 @@
 # Full Stack Employee Management Web Using ReactJs and Springboot
 
 # Tech We Used
-- ReactJs
-- SpringBoot
-- MySql Database
-- Spring Security
+- ReactJs 18.3.1
+- SpringBoot 3
+- MySql Database 8.0.30
+- Spring Security 6
 - REST API
 - Oauth2
 - Websocket
@@ -14,6 +14,8 @@
 - CRUD Operations
 - Data are stored in Mysql database and
 - Neat and clean UI
+- Chatting between users admin
+- Authen with jwt token
 
 # Database
 
