@@ -18,8 +18,8 @@
 - Authen with jwt token
 
 # Step to run in your machine
-
-Clone the repo
+## Run the following in your machine
+git clone https://github.com/HoangHa412/springboot3-reactjs
 
 cd frontend
 npm start dev
