@@ -1,6 +1,5 @@
 package org.example.mycrud.controller;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
 import org.example.mycrud.entity.Role;
 import org.example.mycrud.entity.User;
@@ -19,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -138,13 +136,13 @@ public class AuthController {
 
         Integer userIdFromRefreshToken = jwtUtils.getIdFromJwtToken(refreshTokenRequest.getRefreshToken());
         if (userIdFromRefreshToken == null) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED)
                     .body(BaseResponse.builder().code(ErrorCode.UNAUTHORIZED.getCode()).message(ErrorCode.UNAUTHORIZED.getMessage()).build());
         }
 
         User account = userService.getByID(userIdFromRefreshToken);
         if (account == null) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED)
                     .body(BaseResponse.builder().code(ErrorCode.UNAUTHORIZED.getCode()).message(ErrorCode.UNAUTHORIZED.getMessage()).build());
         }
 
@@ -170,7 +168,7 @@ public class AuthController {
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
         User user = userService.getByUsername(changePasswordRequest.getUsername());
         if (!userService.oldPasswordValidity(changePasswordRequest.getOldPassword(), user)) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND)
                     .body(BaseResponse.builder().code(ErrorCode.INVALID_CREDENTIALS.getCode()).message(ErrorCode.INVALID_CREDENTIALS.getMessage()).build());
         }
 
@@ -192,7 +190,7 @@ public class AuthController {
         User oUserModel = this.userService.getByEmail(email);
 
         if (oUserModel == null) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND)
                     .body(BaseResponse.builder().code(ErrorCode.NOT_FOUND.getCode()).message(ErrorCode.NOT_FOUND.getMessage()).build());
         }
 
@@ -224,13 +222,13 @@ public class AuthController {
         String email = (String) redisTemplate.opsForValue().get(token);
 
         if (email == null) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND)
                     .body(BaseResponse.builder().code(ErrorCode.NOT_FOUND.getCode()).message(ErrorCode.NOT_FOUND.getMessage()).build());
         }
 
         User oUserModel = userService.getByEmail(email);
         if (oUserModel == null) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND)
                     .body(BaseResponse.builder().code(ErrorCode.NOT_FOUND.getCode()).message(ErrorCode.NOT_FOUND.getMessage()).build());
         }
 
