@@ -1,6 +1,6 @@
 # Full Stack Employee Management Web Using ReactJs and Springboot
 
-# Tech We Used
+# Tech Used
 - ReactJs 18.3.1
 - SpringBoot 3
 - MySql Database 8.0.30
