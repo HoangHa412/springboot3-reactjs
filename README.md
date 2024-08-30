@@ -17,15 +17,16 @@
 - Chatting between users admin
 - Authen with jwt token
 
-```bash
+
 # Step to run in your machine
 ### Run the following in your machine
+```bash
 git clone https://github.com/HoangHa412/springboot3-reactjs
 
-cd frontend
+cd /path/frontend
 npm start dev
 
-cd backend
+cd /path/backend
 mvn spring-boot:run
 ```
 # Database
