@@ -11,7 +11,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
+
 
 @Configuration
 public class MailConfig {
