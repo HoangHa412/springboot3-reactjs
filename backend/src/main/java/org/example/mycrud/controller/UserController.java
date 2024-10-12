@@ -244,7 +244,7 @@ public class UserController {
         }
     }
 
-    public CustomException handlerException(Exception exception){
+    private CustomException handlerException(Exception exception){
         String cause = "";
         if(exception.getCause() != null){
             cause = exception.getCause().getClass().getCanonicalName();
